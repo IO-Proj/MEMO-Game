@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	function showTile(e) {
 			if (isFirstClick) {
-				isFirstClick = false;
-				startTimer();
+					isFirstClick = false;
+					startTimer();
 			}
 			if (choosenTiles.length < 2) {
 				var tmp = parseInt(e.target.getAttribute('id'));
@@ -45,7 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
 													   justify-content: center;
 													   margin-right: 25px;
 													   font-size: 24px;`);
-				choosenTiles.push(tiles[tmp]);
+				
+				if (choosenTiles[0] === undefined) {
+					choosenTiles.push(tiles[tmp]);
+				} else {
+					//console.log(typeof(choosenTiles[0].innerHTML));
+					if (parseInt(choosenTiles[0].getAttribute('id')) != tmp) {
+						choosenTiles.push(tiles[tmp]);
+					}
+				}
 				if (choosenTiles.length == 2) {
 					// Po odsłonięciu dwóch kafelków zwiększamy liczbę porównań
 					counter++;
@@ -64,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		var firstIdx = parseInt(choosenTiles[0].getAttribute('id'));
 		var secondIdx = parseInt(choosenTiles[1].getAttribute('id'));
 		// Spawdzamy czy na kafelkach są te same liczby
-		if (tilesNums[firstIdx] == tilesNums[secondIdx]) {
+		if (tilesNums[firstIdx] == tilesNums[secondIdx] && firstIdx != secondIdx) {
 			temp = tilesNums[firstIdx];
 			// Przeszukujemy całą tablicę, żeby 'wymazać' kafelki ze sparowaną liczbą
 			for (let j = 0; j < 20; j++) {
@@ -73,9 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					tilesNums[j] = 0;
 					tiles[j].innerHTML = '';
 					// Wymazanie
-					if ((j+1)%5==0) tiles[j].setAttribute('style', `background-color: transparent;`);
-					else tiles[j].setAttribute('style', `background-color: transparent;
+					if ((j+1)%5==0) {
+						tiles[j].setAttribute('style', `background-color: transparent;`);
+					} else {
+						tiles[j].setAttribute('style', `background-color: transparent;
 														 margin-right: 25px;`);
+					}
+					// Usunięcie event listener'ów z elementu, dzięki temu kafelek nie zareaguje na kliknięcie
+					var clone = tiles[j].cloneNode(true);
+					tiles[j].parentNode.replaceChild(clone, tiles[j]);
 				}					
 			}
 		}
@@ -147,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Tutaj można dodać animację obracania kafelka
 			});
 			// Reakcja div'ów na kliknięcie, w tym przypadku zmiana stylu wyświetlania diva
-			numLayout.addEventListener('click', function(e) {
-				showTile(e);
-			});
+			numLayout.addEventListener('click', showTile, false);
 			// Dodanie kafelków do głównego div'a board
 			grid.appendChild(numLayout);
 			// Przypisanie poszczególnego div'a do kolejnych elementów tablicy
@@ -166,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		stopTimer();
 		clock = 0;
 		time.innerHTML = 'Czas: 0:00';
+		isFirstClick = true;
 		counter = 0;
 		refreshComparisons();
 		tiles = [];
