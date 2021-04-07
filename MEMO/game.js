@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	var isEnd = true;
 	// Zmienna pomocnicza przy losowaniu liczb do gry
 	var temp = -1;
-	
+
 	time.innerHTML = 'Czas: 0:00';
 	comparisons.innerHTML = 'Liczba porównań: ' + counter;
-	
+
 	// Funkcja wyświetlająca zawartość kafelka po kliknięciu
 	function showTile(e) {
 			// Sprawdzamy czy to pierwsze kliknięcie w grze, jeżeli tak to zegar startuje
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Wyświetlenie zawartości znajdującej się pod kafelkiem
 				if ((tmp+1)%5==0) tiles[tmp].setAttribute('style', `background-color: white; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
 				else tiles[tmp].setAttribute('style', `background-color: white; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
-				
+
 				// Jeżeli tablica przechowująca odsłonięte kafelki jest pusta dodajemy kafelek
 				if (choosenTiles[0] === undefined) {
 					choosenTiles.push(tiles[tmp]);
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 	}
-	
+
 	/*
-	Funkcja jest wykorzystywana, gdy mamy odkryte dwa kafelki. 
+	Funkcja jest wykorzystywana, gdy mamy odkryte dwa kafelki.
 	*/
 	function processClick() {
 		var firstIdx = parseInt(choosenTiles[0].getAttribute('id'));
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					// Usunięcie event listener'ów z elementu, dzięki temu kafelek nie zareaguje na kliknięcie
 					var clone = tiles[j].cloneNode(true);
 					tiles[j].parentNode.replaceChild(clone, tiles[j]);
-				}					
+				}
 			}
 		}
 		// Jeżeli liczby na kafelkach nie są sobie równe to je ponownie zakrywamy
@@ -109,13 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		if (isEnd) {
 			stopTimer();
+			if(getAccessToken())
+				saveMemoScore(clock, counter);
 			// Przesłanie wyniku do bazy danych musi się odbyć z tego miejsca, stopTimer() jest wywoływany również w playAgain()
 		} else {
 			isEnd = true;
 		}
 	}
-	
-	/* 
+
+	/*
 	Uzupełniamy tablicę losowymi cyframi z zakresu 1-10 tak, aby były pary.
 	*/
 	function initialize() {
@@ -137,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	// Wywołanie funkcji
 	initialize();
-	
+
 	/*
 	Funkcja służy do przygotowania layout'u do prezentacji danych.
 	Tworzone divy są zakrywane kolorem.
@@ -168,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	// Wywołanie funkcji
 	createBoard();
-	
+
 	// Obsługa działania guzika ponownej gry
 	function playAgain() {
 		// Czyszczenie wszyskich koniecznych zmiennych/funkcji
@@ -191,13 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		createBoard();
 	}
 	button.onclick = playAgain;
-	
+
 	// Włączenie czasomierza
 	function startTimer() {
 		measureTime = true;
 		refreshTimer();
 	}
-	
+
 	// Działanie czasomierza
 	function refreshTimer() {
 		if (measureTime) {
@@ -207,12 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (clock < 10) {
 					time.innerHTML = 'Czas: 0:0' + clock;
 				} else {
-					time.innerHTML = 'Czas: 0:' + clock;	
+					time.innerHTML = 'Czas: 0:' + clock;
 				}
 			} else {
 				var minutes = Math.floor(clock / 60);
 				var seconds = clock % 60;
-				
+
 				if (seconds < 10) {
 					time.innerHTML = 'Czas: ' + minutes + ':0' + seconds;
 				} else {
@@ -222,12 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			setTimeout(refreshTimer, 1000);
 		}
 	}
-	
+
 	// Wyłączenie czasomierza
 	function stopTimer() {
 		measureTime = false;
 	}
-	
+
 	// Odświeżenie liczby porównań
 	function refreshComparisons() {
 		comparisons.innerHTML = '';
