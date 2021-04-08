@@ -1,12 +1,12 @@
 /*
 Tło strony
 */
-body {
+/*body {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #333;
 	width: 1000px;
-}
+}*/
 
 /*
 Szare zaokrąglone tło, które można wystylizować np. na stół
@@ -17,7 +17,7 @@ Szare zaokrąglone tło, które można wystylizować np. na stół
 	text-align: center;
 	background-color: #777;
 	width: 600px;
-	height: 650px;
+	height: 700px;
 	border-radius: 45px;
 }
 
