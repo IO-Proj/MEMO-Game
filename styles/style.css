@@ -15,7 +15,7 @@ Szare zaokrąglone tło, które można wystylizować np. na stół
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	background-color: transparent;/* #777; */
+	background-color: transparent;
 	width: 600px;
 	height: 700px;
 	border-radius: 45px;
