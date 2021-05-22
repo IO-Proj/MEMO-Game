@@ -41,9 +41,62 @@ document.addEventListener('DOMContentLoaded', () => {
 				// Przypisanie liczby do div'a za pomocą innerHTML
 				tiles[tmp].innerHTML = tilesNums[tmp];
 				// Wyświetlenie zawartości znajdującej się pod kafelkiem
+				
+				/* bez kolorów
 				if ((tmp+1)%5==0) tiles[tmp].setAttribute('style', `background-color: white; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
 				else tiles[tmp].setAttribute('style', `background-color: white; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
-
+				*/ 
+				
+				/* z wprowadzonymi kolorami
+				Miało być ładniej pewnie, ale skończyło się na tysiącach ifów. Ale działa!
+				*/
+				
+				if ((tmp+1)%5==0) {
+					if (tilesNums[tmp]==1)
+					tiles[tmp].setAttribute('style', `background-color: #66ff99; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==2)
+					tiles[tmp].setAttribute('style', `background-color: #ccccff; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==3)
+					tiles[tmp].setAttribute('style', `background-color: #ffcc99; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==4)
+					tiles[tmp].setAttribute('style', `background-color: #ff9999; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==5)
+					tiles[tmp].setAttribute('style', `background-color: #ff99ff; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==6)
+					tiles[tmp].setAttribute('style', `background-color: #99ccff; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==7)
+					tiles[tmp].setAttribute('style', `background-color: #66ffff; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==8)
+					tiles[tmp].setAttribute('style', `background-color: #99ffcc; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else if (tilesNums[tmp]==9)
+					tiles[tmp].setAttribute('style', `background-color: #ccffcc; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+					else 
+					tiles[tmp].setAttribute('style', `background-color: #ffffcc; display: flex; align-items: center; justify-content: center; font-size: 24px;`);
+				
+				}
+				else {
+					if (tilesNums[tmp]==1)
+					tiles[tmp].setAttribute('style', `background-color: #66ff99; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==2)
+					tiles[tmp].setAttribute('style', `background-color: #ccccff; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==3)
+					tiles[tmp].setAttribute('style', `background-color: #ffcc99; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==4)
+					tiles[tmp].setAttribute('style', `background-color: #ff9999; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==5)
+					tiles[tmp].setAttribute('style', `background-color: #ff99ff; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==6)
+					tiles[tmp].setAttribute('style', `background-color: #99ccff; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==7)
+					tiles[tmp].setAttribute('style', `background-color: #66ffff; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==8)
+					tiles[tmp].setAttribute('style', `background-color: #99ffcc; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else if (tilesNums[tmp]==9)
+					tiles[tmp].setAttribute('style', `background-color: #ccffcc; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+					else 
+					tiles[tmp].setAttribute('style', `background-color: #ffffcc; display: flex; align-items: center; justify-content: center; margin-right: 25px; font-size: 24px;`);
+				}
+				
 				// Jeżeli tablica przechowująca odsłonięte kafelki jest pusta dodajemy kafelek
 				if (choosenTiles[0] === undefined) {
 					choosenTiles.push(tiles[tmp]);
