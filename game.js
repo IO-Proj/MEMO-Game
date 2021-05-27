@@ -162,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		if (isEnd) {
 			stopTimer();
-			if(getAccessToken())
-				saveScore(Math.round(100000 / (clock * counter)), "memo");
 			// Przesłanie wyniku do bazy danych musi się odbyć z tego miejsca, stopTimer() jest wywoływany również w playAgain()
+			if(getAccessToken())
+				saveScore(Math.round(1000000 / (clock * counter)), "memo");
 		} else {
 			isEnd = true;
 		}
