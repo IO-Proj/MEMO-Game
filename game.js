@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Zmienna pomocnicza przy losowaniu liczb do gry
 	var temp = -1;
 
-	time.innerHTML = 'Czas: 0:00';
-	comparisons.innerHTML = 'Liczba porównań: ' + counter;
+	time.innerHTML = 'Time: 0:00';
+	comparisons.innerHTML = 'Comparisons: ' + counter;
 
 	// Funkcja wyświetlająca zawartość kafelka po kliknięciu
 	function showTile(e) {
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Czyszczenie wszyskich koniecznych zmiennych/funkcji
 		stopTimer();
 		clock = 0;
-		time.innerHTML = 'Czas: 0:00';
+		time.innerHTML = 'Time: 0:00';
 		isFirstClick = true;
 		counter = 0;
 		refreshComparisons();
@@ -260,18 +260,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			clock++;
 			if (clock < 60) {
 				if (clock < 10) {
-					time.innerHTML = 'Czas: 0:0' + clock;
+					time.innerHTML = 'Time: 0:0' + clock;
 				} else {
-					time.innerHTML = 'Czas: 0:' + clock;
+					time.innerHTML = 'Time: 0:' + clock;
 				}
 			} else {
 				var minutes = Math.floor(clock / 60);
 				var seconds = clock % 60;
 
 				if (seconds < 10) {
-					time.innerHTML = 'Czas: ' + minutes + ':0' + seconds;
+					time.innerHTML = 'Time: ' + minutes + ':0' + seconds;
 				} else {
-					time.innerHTML = 'Czas: ' + minutes + ':' + seconds;
+					time.innerHTML = 'Time: ' + minutes + ':' + seconds;
 				}
 			}
 			setTimeout(refreshTimer, 1000);
@@ -286,6 +286,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Odświeżenie liczby porównań
 	function refreshComparisons() {
 		comparisons.innerHTML = '';
-		comparisons.innerHTML = 'Liczba porównań: ' + counter;
+		comparisons.innerHTML = 'Comparisons: ' + counter;
 	}
 });
